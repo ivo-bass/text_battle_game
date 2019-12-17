@@ -222,7 +222,8 @@ while running:
             if players[target].get_hp() == 0:
                 print(Colors.FAIL + Colors.BOLD + players[target].name.replace(" ", "") + " has died!" + Colors.ENDC)
                 del players[target]
-
+            
+            # Check for winner
             running = check_for_winner(players, enemies)
             if running is False:
                 break
@@ -245,10 +246,13 @@ while running:
             if players[target].get_hp() == 0:
                 print(Colors.FAIL + Colors.BOLD + players[target].name.replace(" ", "") + " has died!" + Colors.ENDC)
                 del players[target]
+                
+                # Check for winner
                 running = check_for_winner(players, enemies)
                 if running is False:
                     break
         else:
+            # TODO: Enemies Item Choice to be created
             pass
 
 input("\nPress ENTER to exit")
