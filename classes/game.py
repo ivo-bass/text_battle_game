@@ -33,18 +33,6 @@ class Person:
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
-    def get_hp(self):
-        return self.hp
-
-    def get_max_hp(self):
-        return self.max_hp
-
-    def get_mp(self):
-        return self.mp
-
-    def get_max_mp(self):
-        return self.max_mp
-
     def reduce_mp(self, cost):
         self.mp -= cost
 
@@ -78,7 +66,7 @@ class Person:
             return 0
         else:
             for i, enemy in enumerate(enemies):
-                if enemy.get_hp() != 0:
+                if enemy.hp != 0:
                     print("        " + str(i+1) + ".", enemy.name)
             choice = input("    Choose target: ")
 
