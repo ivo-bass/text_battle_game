@@ -33,59 +33,38 @@ class Person:
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
-    def get_hp(self):
-        return self.hp
-
-    def get_max_hp(self):
-        return self.max_hp
-
-    def get_mp(self):
-        return self.mp
-
-    def get_max_mp(self):
-        return self.max_mp
-
     def reduce_mp(self, cost):
         self.mp -= cost
 
     def choose_action(self):
-        i = 1
         print("\n" + "    " + Colors.BOLD + self.name + Colors.ENDC)
         print(Colors.OKBLUE + Colors.BOLD + "    ACTIONS:" + Colors.ENDC)
-        for item in self.actions:
-            print("        " + str(i) + ":", item)
-            i += 1
+        for i, item in enumerate(self.actions):
+            print("        " + str(i+1) + ":", item)
 
     def choose_magic(self):
-        i = 1
         print("\n" + Colors.OKBLUE + Colors.BOLD + "    MAGIC:" + Colors.ENDC)
-        for spell in self.magic:
-            print("        " + str(i) + ".", spell.name, "(cost:", str(spell.cost) + ")")
-            i += 1
+        for i, spell in enumerate(self.magic):
+            print("        " + str(i+1) + ".", spell.name, "(cost:", str(spell.cost) + ")")
 
     def choose_item(self):
-        i = 1
         print("\n" + Colors.OKGREEN + Colors.BOLD + "    ITEMS:" + Colors.ENDC)
-        for item in self.items:
-            print("        " + str(i) + ".", item["item"].name + ":", item["item"].description,
+        for i, item in enumerate(self.items):
+            print("        " + str(i+1) + ".", item["item"].name + ":", item["item"].description,
                   " (x" + str(item["quantity"]) + ")")
-            i += 1
 
     def choose_target(self, enemies):
-        i = 1
         print("\n" + Colors.FAIL + Colors.BOLD + "    TARGET:" + Colors.ENDC)
         if len(enemies) == 1:
             print("    Only 1 enemy still alive!")
             return 0
         else:
-            for enemy in enemies:
-                if enemy.get_hp() != 0:
-                    print("        " + str(i) + ".", enemy.name)
-                    i += 1
+            for i, enemy in enumerate(enemies):
+                if enemy.hp != 0:
+                    print("        " + str(i+1) + ".", enemy.name)
             choice = input("    Choose target: ")
-            # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            # To be debugged! Choice must be in the count of enemies alive.
-            if choice not in ("1", "2", "3"):
+
+            if choice not in map(str, range(1, len(enemies) + 1)):
                 print(Colors.WARNING + "You missed your turn... Be careful with writing numbers." + Colors.ENDC)
                 return False
             else:

@@ -96,7 +96,7 @@ while running:
                           "points of damage." + Colors.ENDC)
 
                     # Check if the target has died
-                    if enemies[enemy].get_hp() <= 0:
+                    if enemies[enemy].hp <= 0:
                         print(Colors.BOLD + Colors.OKGREEN + enemies[enemy].name.replace(" ", "") +
                               " has died!" + Colors.ENDC)
                         del enemies[enemy]
@@ -106,7 +106,7 @@ while running:
                 player.choose_magic()
                 choice = input("    Choose magic: ")
 
-                if choice not in ("1", "2", "3", "4", "5", "6", "7"):
+                if choice not in map(str, range(1, len(player.magic) + 1)):
                     print(Colors.WARNING + "You missed your turn... Be careful with numbers." + Colors.ENDC)
                     continue
                 else:
@@ -114,7 +114,7 @@ while running:
                     spell = player.magic[magic_choice]
                     magic_dmg = spell.generate_dmg()
 
-                    current_mp = player.get_mp()
+                    current_mp = player.mp
 
                     # Check if the player has enough magic points to use the spell
                     if spell.cost > current_mp:
@@ -139,7 +139,7 @@ while running:
                                   "points of damage to " + enemies[enemy].name.replace(" ", "") + "!" + Colors.ENDC)
 
                             # Check if enemy has died
-                            if enemies[enemy].get_hp() == 0:
+                            if enemies[enemy].hp == 0:
                                 print(Colors.BOLD + Colors.OKGREEN + enemies[enemy].name.replace(" ", "") +
                                       " has died!" + Colors.ENDC)
                                 del enemies[enemy]
@@ -149,7 +149,7 @@ while running:
                 player.choose_item()
                 choice = input("    Choose item: ")
 
-                if choice not in ("1", "2", "3", "4", "5", "6"):
+                if choice not in map(str, range(1, len(player.items) + 1)):
                     print(Colors.WARNING + "You missed your turn... Be careful with numbers." + Colors.ENDC)
                     continue
                 else:
@@ -189,7 +189,7 @@ while running:
                                   "points of damage to " + enemies[e].name.replace(" ", "") + "!" + Colors.ENDC)
 
                         # Check if some of the enemies has died
-                            if enemies_left_count > 0 and enemies[e].get_hp() == 0:
+                            if enemies_left_count > 0 and enemies[e].hp == 0:
                                 print(Colors.BOLD + Colors.OKGREEN + enemies[e].name.replace(" ", "") +
                                       " has died!" + Colors.ENDC)
                                 enemies_left_count -= 1
@@ -219,10 +219,10 @@ while running:
             print(Colors.FAIL + enemy.name.replace(" ", "") + " attacks " +
                   players[target].name.replace(" ", "") + " for", str(enemy_dmg) + "!" + Colors.ENDC)
 
-            if players[target].get_hp() == 0:
+            if players[target].hp == 0:
                 print(Colors.FAIL + Colors.BOLD + players[target].name.replace(" ", "") + " has died!" + Colors.ENDC)
                 del players[target]
-            
+
             # Check for winner
             running = check_for_winner(players, enemies)
             if running is False:
@@ -243,10 +243,10 @@ while running:
                 print(Colors.OKBLUE + enemy.name.replace(" ", "") + "'s " + spell.name + " deals", str(magic_dmg),
                       "points of damage to " + players[target].name.replace(" ", "") + "!" + Colors.ENDC)
 
-            if players[target].get_hp() == 0:
+            if players[target].hp == 0:
                 print(Colors.FAIL + Colors.BOLD + players[target].name.replace(" ", "") + " has died!" + Colors.ENDC)
                 del players[target]
-                
+
                 # Check for winner
                 running = check_for_winner(players, enemies)
                 if running is False:
