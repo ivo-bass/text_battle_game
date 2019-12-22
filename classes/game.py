@@ -72,20 +72,17 @@ class Person:
             i += 1
 
     def choose_target(self, enemies):
-        i = 1
         print("\n" + Colors.FAIL + Colors.BOLD + "    TARGET:" + Colors.ENDC)
         if len(enemies) == 1:
             print("    Only 1 enemy still alive!")
             return 0
         else:
-            for enemy in enemies:
+            for i, enemy in enumerate(enemies):
                 if enemy.get_hp() != 0:
-                    print("        " + str(i) + ".", enemy.name)
-                    i += 1
+                    print("        " + str(i+1) + ".", enemy.name)
             choice = input("    Choose target: ")
-            # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            # To be debugged! Choice must be in the count of enemies alive.
-            if choice not in ("1", "2", "3"):
+
+            if choice not in map(str, range(1, len(enemies) + 1)):
                 print(Colors.WARNING + "You missed your turn... Be careful with writing numbers." + Colors.ENDC)
                 return False
             else:
