@@ -106,7 +106,7 @@ while running:
                 player.choose_magic()
                 choice = input("    Choose magic: ")
 
-                if choice not in ("1", "2", "3", "4", "5", "6", "7"):
+                if choice not in map(str, range(1, len(player.magic) + 1)):
                     print(Colors.WARNING + "You missed your turn... Be careful with numbers." + Colors.ENDC)
                     continue
                 else:
@@ -149,7 +149,7 @@ while running:
                 player.choose_item()
                 choice = input("    Choose item: ")
 
-                if choice not in ("1", "2", "3", "4", "5", "6"):
+                if choice not in map(str, range(1, len(player.items) + 1)):
                     print(Colors.WARNING + "You missed your turn... Be careful with numbers." + Colors.ENDC)
                     continue
                 else:

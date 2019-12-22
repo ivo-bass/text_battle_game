@@ -37,27 +37,21 @@ class Person:
         self.mp -= cost
 
     def choose_action(self):
-        i = 1
         print("\n" + "    " + Colors.BOLD + self.name + Colors.ENDC)
         print(Colors.OKBLUE + Colors.BOLD + "    ACTIONS:" + Colors.ENDC)
-        for item in self.actions:
-            print("        " + str(i) + ":", item)
-            i += 1
+        for i, item in enumerate(self.actions):
+            print("        " + str(i+1) + ":", item)
 
     def choose_magic(self):
-        i = 1
         print("\n" + Colors.OKBLUE + Colors.BOLD + "    MAGIC:" + Colors.ENDC)
-        for spell in self.magic:
-            print("        " + str(i) + ".", spell.name, "(cost:", str(spell.cost) + ")")
-            i += 1
+        for i, spell in enumerate(self.magic):
+            print("        " + str(i+1) + ".", spell.name, "(cost:", str(spell.cost) + ")")
 
     def choose_item(self):
-        i = 1
         print("\n" + Colors.OKGREEN + Colors.BOLD + "    ITEMS:" + Colors.ENDC)
-        for item in self.items:
-            print("        " + str(i) + ".", item["item"].name + ":", item["item"].description,
+        for i, item in enumerate(self.items):
+            print("        " + str(i+1) + ".", item["item"].name + ":", item["item"].description,
                   " (x" + str(item["quantity"]) + ")")
-            i += 1
 
     def choose_target(self, enemies):
         print("\n" + Colors.FAIL + Colors.BOLD + "    TARGET:" + Colors.ENDC)
